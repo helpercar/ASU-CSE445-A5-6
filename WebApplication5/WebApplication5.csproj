@@ -340,6 +340,12 @@
     <WCFMetadataStorage Include="Connected Services\MyImageService\" />
     <WCFMetadataStorage Include="Connected Services\WordFilterServiceReference\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StringUtilities\StringUtilities.csproj">
+      <Project>{ee10a8d5-8884-4214-9454-b8c5d7e40fda}</Project>
+      <Name>StringUtilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -15,10 +15,18 @@ namespace WebApplication5
         }
         protected void memberCheck(object sender, EventArgs e)
         {
-            if (HttpContext.Current.Request.Cookies["login"] != null)
-            {
-                // Case for there is a login cookie
+            bool isLoggedIn = Session["IsLoggedIn"] as bool? ?? false;
 
+            if (Session["UserID"] != null || isLoggedIn)
+            {
+                if ((int)Session["UserID"] == 10)
+                {
+                    Response.Redirect("~/Math.aspx");
+                }
+                else
+                {
+                    Response.Redirect("~/Contact.aspx");
+                }
             }
             else
             {
@@ -31,7 +39,7 @@ namespace WebApplication5
             if (Session["UserID"] != null || isLoggedIn) {
                 if ((int)Session["UserID"] == 10)
                 {
-                    Response.Redirect("~/About.aspx");
+                    Response.Redirect("~/WordFilter.aspx");
                 }
                 else
                 {

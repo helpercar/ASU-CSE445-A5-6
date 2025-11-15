@@ -48,11 +48,13 @@ namespace WebApplication5
             if ((string)Session["generatedString"] == TextBox1.Text)
             {
                 // Successful captcha
+                // Malcom Myers - Creating a Cookie Authorization
                 if (username == "TA" && password == "Cse445!")
                 {
-                    Session["UserName"] = username;
-                    Session["IsLoggedIn"] = true;
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(username, false);
+
                     Session["UserID"] = 10;
+
                     Response.Redirect("~/Default.aspx");
                 }
                 else { 

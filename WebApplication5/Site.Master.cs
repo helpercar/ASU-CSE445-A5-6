@@ -11,7 +11,18 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Malcom Myers - Adding Event Handler
 
+            if (Session["CurrentUsername"] != null)
+            {
+
+                WelcomeLabel.Text = "Welcome " + Session["CurrentUsername"].ToString();
+                WelcomeLabel.Visible = true;
+            }
+            else
+            {
+                WelcomeLabel.Visible=false;
+            }
         }
     }
 }

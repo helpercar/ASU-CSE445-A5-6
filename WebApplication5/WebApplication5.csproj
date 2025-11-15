@@ -101,6 +101,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WordFilter.aspx" />
+    <None Include="Connected Services\WordFilterServiceReference\Service1.disco" />
+    <None Include="Connected Services\WordFilterServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\WordFilterServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\WordFilterServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Math.aspx" />
     <None Include="Connected Services\MathService1\Service1.wsdl" />
     <None Include="Connected Services\MathService1\Service1.xsd">
@@ -184,6 +192,13 @@
     <None Include="Connected Services\MyImageService\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\WordFilterServiceReference\Service1.wsdl" />
+    <None Include="Connected Services\WordFilterServiceReference\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WordFilterServiceReference\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -219,6 +234,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Connected Services\WordFilterServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Math.aspx.cs">
       <DependentUpon>Math.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -290,6 +310,13 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WordFilter.aspx.cs">
+      <DependentUpon>WordFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WordFilter.aspx.designer.cs">
+      <DependentUpon>WordFilter.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -311,6 +338,13 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\MathService1\" />
     <WCFMetadataStorage Include="Connected Services\MyImageService\" />
+    <WCFMetadataStorage Include="Connected Services\WordFilterServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StringUtilities\StringUtilities.csproj">
+      <Project>{ee10a8d5-8884-4214-9454-b8c5d7e40fda}</Project>
+      <Name>StringUtilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -17,5 +17,25 @@ namespace WebApplication5
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        // Malcom Myers - Creating an event Handler for each request 
+        void Application_AcquireRequestState(object sender, EventArgs e)
+        {
+            if (HttpContext.Current.Session != null)
+            {
+                if (HttpContext.Current.User != null &&
+
+                    HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    string usr = HttpContext.Current.User.Identity.Name;
+
+                    Session["CurrentUsername"] = usr;
+                }
+                else
+                {
+                    Session["CurrentUsername"] = null;
+                }
+            }
+        }
     }
 }

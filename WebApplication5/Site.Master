@@ -49,6 +49,8 @@
                         <%--This is the top Toolbar--%>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Math">Math</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/WordFilter">Word Filter</a></li>
+
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Login">Login</a></li>
 

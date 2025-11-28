@@ -15,7 +15,7 @@
         <div>
             <asp:Image ID="Image1" Visible="true" runat="server" />
             <asp:TextBox ID="TextBox1" runat="server" />
-            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="LoginTest" class="btn btn-default" style="background-color: blue; color: white;" />
+            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="LoginHashed" class="btn btn-default" style="background-color: blue; color: white;" />
         </div>
 
         <h1>Sign Up</h1>

@@ -15,7 +15,7 @@
         <div>
             <asp:Image ID="Image1" Visible="true" runat="server" />
             <asp:TextBox ID="TextBox1" runat="server" />
-            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="LoginTest" class="btn btn-default" style="background-color: blue; color: white;" />
+            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="LoginHashed" class="btn btn-default" style="background-color: blue; color: white;" />
         </div>
 
         <h1>Sign Up</h1>
@@ -28,5 +28,7 @@
             <asp:TextBox ID="signUpPassword" runat="server" TextMode="Password" placeholder="Enter your password"></asp:TextBox>
         </p>
         <asp:Button ID="btnSignUp" runat="server" Text="Login" OnClick="SignUp" class="btn btn-default" style="background-color: blue; color: white;" />
+        <%-- <asp:Button ID="testHashBtn" runat="server" Text="TestHash" OnClick="testHash" class="btn btn-default" style="background-color: blue; color:white;" /> 
+            This Line was to add the TA Staff into the Staff.xml file --%> 
     </main>
 </asp:Content>

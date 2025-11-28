@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="WordFilter.aspx" />
+    <Content Include="Staff.xml" />
     <None Include="Connected Services\WordFilterServiceReference\Service1.disco" />
     <None Include="Connected Services\WordFilterServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\WordFilterServiceReference\configuration.svcinfo" />

@@ -57,5 +57,9 @@ namespace WebApplication5
         protected void MathPage(object sender, EventArgs e) {
             Response.Redirect("~/Math.aspx");
         }
+        protected void WordPage(object sender, EventArgs e)
+        {
+            Response.Redirect("~/WordFilter.aspx");
+        }
     }
 }

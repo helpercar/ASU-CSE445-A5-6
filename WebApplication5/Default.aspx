@@ -35,7 +35,7 @@
                     Word Filter Services: 
                 </p>
                 <p>
-                    <asp:button class="btn btn-default" onClick="adminCheck" style="background-color: blue; color: white;" Text="Word Filter Access" runat="server"></asp:button>
+                    <asp:button class="btn btn-default" onClick="WordPage" style="background-color: blue; color: white;" Text="Word Filter Access" runat="server"></asp:button>
                 </p>
                 <%-- Add a Button That leads to the sign in page --%>
                 <%-- Changed these buttons to say what they actually lead to, but gonna change them back once we implement the actual admin and member stuff --%>

@@ -154,8 +154,43 @@ namespace WebApplication5
                         
                 }
 
-                else { 
+                else {
                     // Unsuccessful Login Attempt, check the Users.xml (needs to be added)
+
+                    String userPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Users.xml");
+                    if (File.Exists(userPath))
+                    {
+                        doc = new XDocument(new XElement("Users"));
+                    }
+                    else
+                    {
+                        doc = XDocument.Load(xmlFilePath);
+                    }
+
+                    var existing_User = doc.Root.Elements("User")
+                                            .FirstOrDefault(u => (string)u.Element("Username") == username);
+
+                    if (existing_User == null)
+                    {
+                        string stored_Hash = (string)existing_User.Element("Password");
+
+                        byte[] input_Bytes = Encoding.UTF8.GetBytes(password);
+
+                        using (SHA384Managed sha384 = new SHA384Managed())
+                        {
+                            string input_Hash = BitConverter.ToString(sha384.ComputeHash(input_Bytes));
+
+                            if (stored_Hash == input_Hash)
+                            {
+                                System.Web.Security.FormsAuthentication.SetAuthCookie(username, false);
+                                Response.Redirect("~/Member.aspx");
+                            }
+                        }
+
+
+                    }
+
+
                 }
             }
             else
@@ -168,8 +203,53 @@ namespace WebApplication5
 
         }
 
-        protected void SignUp(object sender, EventArgs e) { 
+        protected void SignUp(object sender, EventArgs e) 
+        {
             // FIXME: Actually implement signing up
+            string username = loginUsername.Text;
+            string password = loginPassword.Text;
+
+            //validating 
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                return;
+            }
+
+            string hex_Hash = "";
+            byte[] input_Bytes = Encoding.UTF8.GetBytes(password);
+
+            using (SHA384 sha384 = SHA384.Create())
+            {
+                byte[] hash_bytes = sha384.ComputeHash(input_Bytes);
+                hex_Hash = BitConverter.ToString(hash_bytes);
+            }
+
+
+
+
+            string xmlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "User.xml");
+            XDocument doc1;
+
+            if (!System.IO.File.Exists(xmlPath))
+            {
+               doc1 = new XDocument(new XElement("User"));
+            }
+            else
+            {
+                doc1 = XDocument.Load(xmlPath);
+            }
+
+            XElement new_User = new XElement("User",
+                new XElement("Username", username),
+                new XElement("Password", hex_Hash)
+                );
+
+            doc1.Root.Add(new_User);
+            doc1.Save(xmlPath);
+
+            Debug.WriteLine("User has been Registered");
+
+
         }
     }
 }

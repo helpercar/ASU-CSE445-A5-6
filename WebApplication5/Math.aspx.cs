@@ -13,7 +13,7 @@ namespace WebApplication5
         MathService1.Service1Client mathServer;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserType"] == null || (string)Session["UserType"] != "Staff" || (string)Session["UserType"] != "Member")
+            if (Session["UserType"] == null && (string)Session["UserType"] != "Staff" && (string)Session["UserType"] != "Member")
             {
                 // Redirect to Login if not the right user type, the login will redirect to default if already Logged in
                 Response.Redirect("Login.aspx");

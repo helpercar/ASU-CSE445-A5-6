@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,7 @@ namespace WebApplication5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Debug.WriteLine(Session["UserType"]);
         }
         protected void memberCheck(object sender, EventArgs e)
         {
@@ -36,17 +37,19 @@ namespace WebApplication5
         protected void adminCheck(object sender, EventArgs e) {
             bool isLoggedIn = Session["IsLoggedIn"] as bool? ?? false;
 
-            if (Session["UserID"] != null || isLoggedIn) {
-                if ((int)Session["UserID"] == 10)
+            if (Session["UserType"] != null || isLoggedIn)
+            {
+                if ((string)Session["UserType"] == "Staff")
                 {
-                    Response.Redirect("~/WordFilter.aspx");
+                    Response.Redirect("~/Staff.aspx");
                 }
                 else
                 {
-                    Response.Redirect("~/Contact.aspx");
+                    Response.Redirect("~/Default.aspx");
                 }
             }
-            else {
+            else
+            {
                 Response.Redirect("~/Login.aspx");
             }
         }

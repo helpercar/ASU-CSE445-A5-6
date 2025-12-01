@@ -17,5 +17,9 @@ namespace WebApplication5
                 Response.Redirect("Login.aspx");
             }
         }
+
+        protected void Add_Staff(object sender, EventArgs e) { 
+            
+        }
     }
 }

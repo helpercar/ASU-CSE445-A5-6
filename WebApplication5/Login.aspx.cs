@@ -23,7 +23,7 @@ namespace WebApplication5
             bool isLoggedIn = Session["IsLoggedIn"] as bool? ?? false;
             Image1.ImageUrl = "~/imageprocess.aspx";    // Loads the captcha
 
-            if (Session["UserID"] != null ||  isLoggedIn)
+            if (Session["UserType"] != null ||  isLoggedIn)
             {
                 Response.Redirect("Default.aspx");
             }

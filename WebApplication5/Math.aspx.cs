@@ -13,7 +13,15 @@ namespace WebApplication5
         MathService1.Service1Client mathServer;
         protected void Page_Load(object sender, EventArgs e)
         {
-            MathService1.Service1Client mathServer = new MathService1.Service1Client();
+            if (Session["UserType"] == null || (string)Session["UserType"] != "Staff" || (string)Session["UserType"] != "Member")
+            {
+                // Redirect to Login if not the right user type, the login will redirect to default if already Logged in
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                MathService1.Service1Client mathServer = new MathService1.Service1Client();
+            }
         }
 
         protected void Add(object sender, EventArgs e) {

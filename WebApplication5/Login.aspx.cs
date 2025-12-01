@@ -124,6 +124,7 @@ namespace WebApplication5
                 {
                     // This was for the Staff.xml file only, we should use a Users.xml for the sign up and the TA's can add their own Staff users
                     // If a matching user was found, return the Password element's value
+                    Debug.WriteLine("Matches Staff");
                     realPass = (string)user.Element("Password");
                     byte[] inputBytes = Encoding.UTF8.GetBytes(password);
 
@@ -136,42 +137,43 @@ namespace WebApplication5
                         Debug.WriteLine(realPass);
 
                         // Malcom Myers - Creating a Cookie Authorization
-                        if (username == "TA" && realPass == hexHash)
+                        if (realPass == hexHash)
                         {
                             System.Web.Security.FormsAuthentication.SetAuthCookie(username, false);
 
                             Session["UserID"] = 10;
+                            Session["UserType"] = "Staff";
 
-                            Response.Redirect("~/Default.aspx");
+                            Response.Redirect("~/Staff.aspx");
                         }
                         else
                         {
-                            // This if statement is purely for testing a possible login function and will be fleshed out for Assignment 6
+                            // Add Alerts if possible
+                            
                         }
                     }
 
                         
                         
                 }
-
                 else {
                     // Unsuccessful Login Attempt, check the Users.xml (needs to be added)
+                    Debug.WriteLine($"Matches User {username}");
 
                     String userPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Users.xml");
-                    if (File.Exists(userPath))
-                    {
-                        doc = new XDocument(new XElement("Users"));
-                    }
-                    else
-                    {
-                        doc = XDocument.Load(xmlFilePath);
-                    }
+                    Debug.WriteLine(userPath);
 
-                    var existing_User = doc.Root.Elements("User")
-                                            .FirstOrDefault(u => (string)u.Element("Username") == username);
+                    XDocument doc2 = XDocument.Load(userPath);
 
-                    if (existing_User == null)
+                    var existing_User = doc2.Root
+                        .Elements("User")
+                        .FirstOrDefault(u => (string)u.Element("Username") == username);
+
+                    Debug.WriteLine(existing_User);
+
+                    if (existing_User != null)
                     {
+                        Debug.WriteLine("User Found");
                         string stored_Hash = (string)existing_User.Element("Password");
 
                         byte[] input_Bytes = Encoding.UTF8.GetBytes(password);
@@ -180,14 +182,16 @@ namespace WebApplication5
                         {
                             string input_Hash = BitConverter.ToString(sha384.ComputeHash(input_Bytes));
 
-                            if (stored_Hash == input_Hash)
+                            if (stored_Hash == input_Hash)  // Check Password
                             {
                                 System.Web.Security.FormsAuthentication.SetAuthCookie(username, false);
+                                Session["UserType"] = "Member";
                                 Response.Redirect("~/Member.aspx");
                             }
                         }
-
-
+                    }
+                    else {
+                        Debug.WriteLine("User not Found");
                     }
 
 
@@ -206,12 +210,14 @@ namespace WebApplication5
         protected void SignUp(object sender, EventArgs e) 
         {
             // FIXME: Actually implement signing up
-            string username = loginUsername.Text;
-            string password = loginPassword.Text;
+            Debug.WriteLine("Signing Up");
+            string username = signUpUsername.Text;
+            string password = signUpPassword.Text;
 
             //validating 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
+                Debug.WriteLine("Empty Inputs");
                 return;
             }
 
@@ -227,7 +233,7 @@ namespace WebApplication5
 
 
 
-            string xmlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "User.xml");
+            string xmlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Users.xml");
             XDocument doc1;
 
             if (!System.IO.File.Exists(xmlPath))

@@ -17,15 +17,15 @@ namespace WebApplication5
         {
             bool isLoggedIn = Session["IsLoggedIn"] as bool? ?? false;
 
-            if (Session["UserID"] != null || isLoggedIn)
+            if (Session["UserType"] != null || isLoggedIn)
             {
-                if ((int)Session["UserID"] == 10)
+                if ((string)Session["UserType"] == "Member" || (string)Session["UserType"] == "Staff")
                 {
-                    Response.Redirect("~/Math.aspx");
+                    Response.Redirect("~/Member.aspx");
                 }
                 else
                 {
-                    Response.Redirect("~/Contact.aspx");
+                    Response.Redirect("~/Default.aspx");
                 }
             }
             else

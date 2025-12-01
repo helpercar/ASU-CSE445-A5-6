@@ -29,7 +29,7 @@
                     Math Services: 
                 </p>
                 <p>
-                    <asp:button class="btn btn-default" style="background-color: blue; color: white;" OnClick="memberCheck" runat="server" Text="Math Access"></asp:button>
+                    <asp:button class="btn btn-default" style="background-color: blue; color: white;" OnClick="MathPage" runat="server" Text="Math Access"></asp:button>
                 </p>
                 <p>
                     Word Filter Services: 

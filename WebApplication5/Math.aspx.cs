@@ -22,7 +22,7 @@ namespace WebApplication5
             //}
             //else
             //{
-            //    MathService1.Service1Client mathServer = new MathService1.Service1Client();
+            MathService1.Service1Client mathServer = new MathService1.Service1Client();
             //}
         }
 

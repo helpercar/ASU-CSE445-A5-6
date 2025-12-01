@@ -53,5 +53,9 @@ namespace WebApplication5
                 Response.Redirect("~/Login.aspx");
             }
         }
+
+        protected void MathPage(object sender, EventArgs e) {
+            Response.Redirect("~/Math.aspx");
+        }
     }
 }
